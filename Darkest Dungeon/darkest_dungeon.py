@@ -47,3 +47,13 @@ class GameActions:
         """Show character card in character roaster.
         This game responds to mouse button down events only after they're pressed for some time"""
         ctrl.mouse_click(button=1, hold=16000)
+
+    def get_game_movement_keys():
+        return ["a", "d"]
+
+    def is_default_eye_mouse_noise_behavior():
+        return False
+
+    def game_before_on_pop():
+        actions.user.switch_game_movement(0)
+        actions.user.mouse_scroll_stop()
