@@ -41,7 +41,7 @@ class GameActions:
 
     def press_game_key(key: str):
         """This game responds to key down events only after they're pressed for some time"""
-        actions.user.hold_game_key(key, "12ms")
+        actions.user.hold_game_key(key, "20ms")
 
     def game_character_sheet_show():
         """Show character card in character roaster.
