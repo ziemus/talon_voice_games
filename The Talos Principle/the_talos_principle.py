@@ -18,12 +18,6 @@ and app: TheTalosPrinciple
 @talos_game_context.action_class("user")
 class Actions:
 
-    def is_default_eye_mouse_noise_behavior():
-        return False
-
-    def game_get_mouse_delta_x_for_turning_camera_around():
-        return 787
-
     def game_before_on_pop():
         actions.user.talos_cancel_test_reset()
 

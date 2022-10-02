@@ -2,6 +2,9 @@ mode: user.game
 and not mode: sleep
 and app: vtm_bloodlines
 -
+settings():
+    user.game_turn_around_mouse_delta = 100
+    
 tag(): user.wsad_game_controls
 tag(): user.first_person_game_controls
 

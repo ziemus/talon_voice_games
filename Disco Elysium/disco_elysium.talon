@@ -1,9 +1,20 @@
-app: disco_elysium
+title: Disco Elysium
+and app.exe: Disco Elysium.exe
+and app.name: Disco Elysium.exe
 and not mode: sleep
 and mode: user.game
 -
 settings():
     user.mouse_hide_mouse_gui = 1
+    #Most of the time the player will use the default behavior of click on pop anyway,
+    #but just in case they don't have a means of toggling sprint by pushing Caps Look
+    #(which is not supported by talon)
+    #I want to make it possible for the player
+    #to switch to sprinting instead of walking by voice only
+    #and that requires double clicking on pop
+    #wich is implemented by game noise controls
+    user.mouse_enable_pop_click = 0
+    user.mouse_wait = 50000
 
 continue | co | next | ness:
     key(enter)

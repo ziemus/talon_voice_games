@@ -13,9 +13,8 @@ class DarkestDungeonActions:
 
     def darkest_dungeon_skill_switch(digits: int):
         """Shortcut for switching skills. Accepts only 1-5."""
-        if digits > 5:
-            return
-        actions.user.press_game_key(f"{digits}")
+        if digits in range(1, 6):
+            actions.key(f"{digits}")
 
 
 ctx = Context()
@@ -39,10 +38,6 @@ ctx.lists["user.game_directions"] = {
 @ctx.action_class("user")
 class GameActions:
 
-    def press_game_key(key: str):
-        """This game responds to key down events only after they're pressed for some time"""
-        actions.user.hold_game_key(key, "20ms")
-
     def game_character_sheet_show():
         """Show character card in character roaster.
         This game responds to mouse button down events only after they're pressed for some time"""
@@ -51,9 +46,5 @@ class GameActions:
     def get_game_movement_keys():
         return ["a", "d"]
 
-    def is_default_eye_mouse_noise_behavior():
-        return False
-
     def game_before_on_pop():
         actions.user.switch_game_movement(0)
-        actions.user.mouse_scroll_stop()

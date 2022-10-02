@@ -4,9 +4,17 @@ and mode: user.game
 -
 settings():
     user.mouse_hide_mouse_gui = 1
+    key_hold = 32.0
+    user.mouse_wait = 50000
+    user.mouse_hold = 50000
+    user.mouse_continuous_scroll_amount = 1000
     
 tag(): user.game_basic_movement
 tag(): user.game_character_sheet
+[hero] next:
+    key(e)
+[hero] (prev | previous):
+    key(q)
 stay:
     user.mouse_stay_in_place(1)
 come:
@@ -23,14 +31,18 @@ drag:
 	user.mouse_drag(0)
 (buy | take | sell) <digits>:
     user.mouse_stay_in_place(1)
-    user.game_click(0, digits, 50000)
+    user.game_click(0, digits)
     user.mouse_stay_in_place(0)
+shift down:
+    key("shift:down")
+shift up:
+    key("shift:up")
 map | bag | inventory:
-    user.press_game_key("tab")
+    key(tab)
 take all:
-    user.press_game_key("space")
+    key(space)
 torch:
-    user.press_game_key("t")
+    key(t)
 [item] use:
     user.game_click(1)
 [room] enter | interact:
@@ -38,6 +50,6 @@ torch:
 [skill] [switch] <digits>:
     user.darkest_dungeon_skill_switch(digits)
 menu | go back | cancel | escape:
-    user.press_game_key("escape")
+    key(escape)
 help [show]:
-    user.press_game_key("h")
+    key(h)
