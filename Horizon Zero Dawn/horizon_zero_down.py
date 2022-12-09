@@ -2,7 +2,7 @@ from talon import Module, Context, actions, ctrl
 
 mod = Module()
 mod.apps.horizon_zero_dawn = """
-title: Horizon Zero Dawn
+title: Horizon Zero Dawn: Complete Edition
 and app.name: Horizon Zero Dawn
 """
 

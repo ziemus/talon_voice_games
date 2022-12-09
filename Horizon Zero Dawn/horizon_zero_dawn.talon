@@ -1,15 +1,15 @@
 mode: user.game
-#and not mode: sleep
-#mode: any
+and not mode: sleep
 and app: horizon_zero_dawn
 -
 settings():
 	user.mouse_enable_pop_click = 0
 	user.mouse_hide_mouse_gui = 1
-    key_hold = 48.0
-    user.mouse_hold = 48000
+    key_hold = 64.0
+    user.mouse_hold = 64000
 	user.mouse_wait = 0
 	user.game_turn_around_mouse_delta = 999
+	user.game_turn_sideways_mouse_delta = 800
     user.game_noise_pop_binding_default = "move"
     user.game_noise_hiss_binding_default = "click"
 
@@ -27,9 +27,9 @@ slide | crouch [toggle | switch]:
 	key(c)
 [dodge] roll | dodge | [slow] mount:
 	key(ctrl)
-interact | use | quicksave:
+interact | use | play | pick [up] | quicksave:
 	key(e)
-focus mode [toggle | switch]:
+focus [mode] [toggle | switch]:
 	key(v)
 medicine [pouch] [use]:
 	key(q)
@@ -58,12 +58,13 @@ aim done | no aim:
 	user.game_press_mouse(1, 0)
 reload | red:
 	key(r)
-focus | concentrate | concentration:
+concentrate | concentration:
 	key(shift)
 [weapon] wheel:
 	key(tab)
 [target] tag:
-	mouse_click(0)
+	user.game_click(0)
+
 # menu
 menu open:
 	key(backspace)
