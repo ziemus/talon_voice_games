@@ -6,6 +6,7 @@ settings():
 	user.mouse_enable_pop_click = 0
 	user.mouse_hide_mouse_gui = 1
     key_hold = 64.0
+	key_wait = 16.0
     user.mouse_hold = 64000
 	user.mouse_wait = 0
 	user.game_turn_around_mouse_delta = 999
@@ -20,21 +21,30 @@ tag(): user.first_person_game_controls
 # except for sprint toggle bound to backslash instead of caps lock
 
 touch | click | yoink:
-	mouse_click(0)
+	user.game_click(0)
 
 # game
-slide | crouch [toggle | switch]:
+slide | (crouch | duck) [toggle | switch]:
 	key(c)
 [dodge] roll | dodge | [slow] mount:
 	key(ctrl)
-interact | use | play | pick [up] | quicksave:
+interact | use | play | pick [up] | gather | quicksave:
 	key(e)
+loot | harvest:
+	user.game_hold_key_native("e", 1500000)
 focus [mode] [toggle | switch]:
 	key(v)
-medicine [pouch] [use]:
+(medicine [pouch] | pouch) [use]:
 	key(q)
 [selected] (trap | tool) [use]:
 	key(f)
+(trap | tool | rock) aim:
+	key(f:down)
+(trap | tool | rock) (quit | cancel | no aim | aim done):
+	user.game_click(1)
+	key(f:up)
+(trap | tool | rock) (throw | release):
+	key(f:up)
 tools [cycle] left:
 	key(z)
 tools [cycle] right:
@@ -60,8 +70,12 @@ reload | red:
 	key(r)
 concentrate | concentration:
 	key(shift)
-[weapon] wheel:
-	key(tab)
+[weapon] wheel [show]:
+	key(tab:down)
+no [weapon] wheel | [weapon] wheel (hide | done):
+	key(tab:up)
+craft:
+	user.game_click(0, 1, 650000)
 [target] tag:
 	user.game_click(0)
 
@@ -92,11 +106,3 @@ map [show]:
 	key(m)
 (notebook | notes) [show]:
 	key(n)
-
-
-key(3):
-    user.game_jump()
-key(2):
-	user.switch_game_movement()
-key(1):
-    user.game_turn_camera_around()
