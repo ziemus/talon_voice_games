@@ -40,15 +40,11 @@ class HorizonZeroDawnActions:
 
     def horizon_weapon_aim_toggle():
         """"""
-        global is_weapon_aim
-        is_weapon_aim = not is_weapon_aim
-        actions.user.horizon_weapon_aim(is_weapon_aim)
+        actions.user.horizon_weapon_aim(not is_weapon_aim)
 
     def horizon_tool_aim_toggle():
         """"""
-        global is_tool_aim
-        is_tool_aim = not is_tool_aim
-        actions.user.horizon_tool_aim(is_tool_aim)
+        actions.user.horizon_tool_aim(not is_tool_aim)
 
     def horizon_override(is_override: bool):
         """"""
@@ -85,12 +81,16 @@ class HorizonZeroDawnActions:
 
     def horizon_weapon_aim(is_on: bool):
         """"""
+        global is_weapon_aim
         actions.user.game_press_mouse(1, is_on)
+        is_weapon_aim = is_on
 
     def horizon_tool_aim(is_on: bool):
         """"""
+        global is_tool_aim
         if is_on:
             actions.key("f:down")
         else:
             actions.user.game_click(1)
             actions.key("f:up")
+        is_tool_aim = is_on
