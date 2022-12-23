@@ -20,7 +20,7 @@ ctx.lists["user.game_number_shortcuts"] = {
 
 is_tool_aim: bool = False
 is_weapon_aim: bool = False
-
+is_weapon_wheel: bool = False
 
 @ctx.action_class("user")
 class GameActions:
@@ -67,12 +67,18 @@ class HorizonZeroDawnActions:
         """"""
         actions.key("c")
 
+    def horizon_weapon_wheel_toggle():
+        """"""
+        actions.user.horizon_weapon_wheel(not is_weapon_wheel)
+
     def horizon_weapon_wheel(is_show: bool):
         """"""
+        global is_weapon_wheel
         if is_show:
             actions.key("tab:down")
         else:
             actions.key("tab:up")
+        is_weapon_wheel = is_show
 
     def horizon_climb_down():
         """"""
@@ -94,3 +100,9 @@ class HorizonZeroDawnActions:
             actions.user.game_click(1)
             actions.key("f:up")
         is_tool_aim = is_on
+
+    def horizon_tool_throw():
+        """"""
+        global is_tool_aim
+        actions.key("f:up")
+        is_tool_aim = False

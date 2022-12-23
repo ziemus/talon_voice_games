@@ -6,12 +6,14 @@ settings():
 	user.mouse_enable_pop_click = 0
 	user.mouse_hide_mouse_gui = 1
 	user.mouse_continuous_scroll_amount = 250
+	user.mouse_wheel_down_amount = 250
     key_hold = 64.0
 	key_wait = 16.0
     user.mouse_hold = 64000
 	user.mouse_wait = 0
 	user.game_turn_around_mouse_delta = 999
-	user.game_turn_sideways_mouse_delta = 600
+	user.game_turn_horizontally_mouse_delta = 600
+	user.game_turn_vertically_mouse_delta = 150
     user.game_noise_pop_binding_default = "move"
     user.game_noise_hiss_binding_default = "click"
 
@@ -43,7 +45,7 @@ interact | talk | trait | examine | use | play | pick [up] | gather:
 loot | harvest | search:
 	user.game_hold_key_native("e", 650000)
 # FOCUS MODE SECTION
-focus mode [toggle | switch] | scan:
+focus [mode] [toggle | switch] | scan:
 	key(v)
 [target] tag:
 	user.game_click(0)
@@ -60,19 +62,18 @@ rock [aim]:
 rock (no aim | aim done):
 	user.horizon_tool_aim(0)
 [rock] throw:
-	key(f:up)
+	user.horizon_tool_throw()
 # HUD SECTION
 tool [cycle] left | zip:
 	key(z)
 tool [cycle] right | zap | lex:
 	key(x)
 [weapon] [fast] [equip | switch] {user.game_number_shortcuts}:
-	print(game_number_shortcuts)
 	key(game_number_shortcuts)
 (hud | objectives) show:
 	key(h)
 [weapon] wheel [show]:
-	user.horizon_weapon_wheel(1)
+	user.horizon_weapon_wheel_toggle()
 no [weapon] wheel | [weapon] wheel (hide | done):
 	user.horizon_weapon_wheel(0)
 craft:
@@ -126,7 +127,7 @@ aim done | no aim:
 	user.horizon_weapon_aim(0)
 reload | red:
 	key(r)
-concentrate | concentration | focus:
+concentrate | concentration | con:
 	user.horizon_weapon_aim(1)
 	key(shift)
 
