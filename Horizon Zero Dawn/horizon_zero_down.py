@@ -61,7 +61,7 @@ class HorizonZeroDawnActions:
         actions.user.switch_game_movement_direction("s")
         actions.user.switch_game_movement(True)
         # actions.user.game_turn_camera_around()
-        actions.user.horizon_toggle_sprint()
+        actions.user.game_switch_sprint(True)
 
     def horizon_duck():
         """"""
@@ -90,6 +90,15 @@ class HorizonZeroDawnActions:
         global is_weapon_aim
         actions.user.game_press_mouse(1, is_on)
         is_weapon_aim = is_on
+
+    def horizon_bow_draw(is_on: bool):
+        """"""
+        if is_on:
+            actions.user.horizon_weapon_aim(True)
+            actions.user.game_press_mouse(0, True)
+        else:
+            actions.user.horizon_weapon_aim(False)
+            actions.user.game_press_mouse(0, False)
 
     def horizon_tool_aim(is_on: bool):
         """"""

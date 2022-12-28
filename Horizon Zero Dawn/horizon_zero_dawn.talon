@@ -54,7 +54,7 @@ highlight [track] | track:
 # TOOLS SECTION
 (medicine [pouch] | pouch) [use] | heal:
 	key(q)
-[selected] (trap | tool) [use]:
+[selected] tool [use]:
 	key(f)
 rock [aim]:
 	user.horizon_tool_aim_toggle()
@@ -118,6 +118,12 @@ light [attack] [mode] [switch | toggle]:
 heavy [attack] [mode] [switch | toggle]:
 	key(shift:down)
 # AIMING SECTION
+[bow] draw:
+	user.horizon_bow_draw(1)
+[bow] fire | fun:
+	user.game_press_mouse(0, 0)
+[bow] quit:
+	user.horizon_bow_draw(0)
 # toggle aim on and off
 aim:
 	user.horizon_weapon_aim_toggle()
@@ -142,7 +148,7 @@ page right | each | eat :
 	key(e)
 take all:
 	key(e)
-drop | ditch | unequip | [modification | mod] slot clear | mark [to] [sell] | function [group] 1:
+drop that | ditch that | unequip | [modification | mod] slot clear | mark [to] [sell] | function [group] 1:
 	#key(r)
 	user.game_hold_key_native("r", 650000)
 disassemble (all | multiple) | sell (all | multiple) | job create | show on map | map point | function [group] 2:
