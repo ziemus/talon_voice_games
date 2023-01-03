@@ -25,24 +25,24 @@ tag(): user.game_mouse_enabled
 # MOVEMENT SECTION
 walk | run:
 	key(capslock)
-sprint:
+sprint | print:
 	user.game_switch_sprint(1)
-slide:
+slide | lie:
 	user.horizon_duck()
 (crouch | duck) [toggle | switch]:
 	user.horizon_duck()
 climb down:
 	user.horizon_climb_down()
-stealth [swim]:
+dive now:
 	key(ctrl:down)
-no stealth [swim] | stealth [swim] done:
+dive done:
 	key(ctrl:up)
-roll | dodge | dog | do:
+roll | dodge | dog:
 	key(ctrl)
 # EXPLORATION AND INTERACTIONS SECTION
-interact | talk | trait | examine | use | play | pick [up] | gather:
+(interact | talk | trade | examine) with | use | play (it | that) | pick [up] | gather:
 	user.game_use()
-loot | harvest | search:
+(loot | harvest | search) (it | that):
 	user.game_hold_key_native("e", 650000)
 # FOCUS MODE SECTION
 focus [mode] [toggle | switch] | scan:
@@ -118,6 +118,9 @@ light [attack] [mode] [switch | toggle]:
 heavy [attack] [mode] [switch | toggle]:
 	key(shift:down)
 # AIMING SECTION
+[bow] get | draw concentrate:
+	user.horizon_bow_draw(1)
+	key(shift)
 [bow] draw:
 	user.horizon_bow_draw(1)
 [bow] fire | fun:
@@ -133,7 +136,7 @@ aim done | no aim:
 	user.horizon_weapon_aim(0)
 reload | red:
 	key(r)
-concentrate | concentration | con:
+concentrate | concentration | con | come:
 	user.horizon_weapon_aim(1)
 	key(shift)
 
@@ -148,13 +151,13 @@ page right | each | eat :
 	key(e)
 take all:
 	key(e)
-drop that | ditch that | unequip | [modification | mod] slot clear | mark [to] [sell] | function [group] 1:
+drop (it | that) | ditch (it | that) | unequip (it | that) | (modification | mod) [slot] clear | mark [to] [sell] | function [group] 1:
 	#key(r)
 	user.game_hold_key_native("r", 650000)
-disassemble (all | multiple) | sell (all | multiple) | job create | show on map | map point | function [group] 2:
+disassemble [many | multiple] | sell (many | multiple) | job create | show on map | map point | function [group] 2:
 	key(g)
 # craft voice command takes care of both crafting controls: in weapon wheel and in crafting menu, so I excluded it from function group 3
-take | [skill] learn | select | equip | modify | disassemble | buy | sell | quest activate | datapoint play | function [group] 3:
+take | [skill] learn | select | equip | modify | disassemble (it | that) | buy (it | that) | sell (it | that) | quest activate | datapoint play | function [group] 3:
 	user.game_hold_key_native("f", 650000)
 (skills | skill tree) [show]:
 	key(k)

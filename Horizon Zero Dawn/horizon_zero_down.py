@@ -92,7 +92,8 @@ class HorizonZeroDawnActions:
         is_weapon_aim = is_on
 
     def horizon_bow_draw(is_on: bool):
-        """"""
+        """aim ranged weapon and/or draw arrow
+        or cancel aiming drawn weapon"""
         if is_on:
             actions.user.horizon_weapon_aim(True)
             actions.user.game_press_mouse(0, True)
