@@ -11,9 +11,9 @@ settings():
 	key_wait = 16.0
     user.mouse_hold = 64000
 	user.mouse_wait = 0
-	user.game_turn_around_mouse_delta = 999
-	user.game_turn_horizontally_mouse_delta = 600
-	user.game_turn_vertically_mouse_delta = 150
+	user.game_turn_around_mouse_delta = 500
+	user.game_turn_horizontally_mouse_delta = 300
+	user.game_turn_vertically_mouse_delta = 100
     user.game_noise_pop_binding_default = "move"
     user.game_noise_hiss_binding_default = "click"
 
@@ -33,14 +33,14 @@ slide | lie:
 	user.horizon_duck()
 climb down:
 	user.horizon_climb_down()
-dive now:
+dive:
 	key(ctrl:down)
 dive done:
 	key(ctrl:up)
 roll | dodge | dog:
 	key(ctrl)
 # EXPLORATION AND INTERACTIONS SECTION
-(interact | talk | trade | examine) with | use | play (it | that) | pick [up] | gather:
+(interact | talk | trade | examine) with | talk to | use | play (it | that) | pick [up] | gather:
 	user.game_use()
 (loot | harvest | search) (it | that):
 	user.game_hold_key_native("e", 650000)
@@ -79,6 +79,12 @@ no [weapon] wheel | [weapon] wheel (hide | done):
 craft:
 	user.game_click(0, 1, 650000)
 	user.game_hold_key_native("f", 650000)
+(datapoint | note) (view | read):
+	user.mouse_stay_in_place(1)
+	key(enter)
+	sleep(1s)
+	key(enter)
+	user.mouse_stay_in_place(0)
 # SAVES SECTION
 manual save:
 	key(g)
@@ -151,19 +157,19 @@ page right | each | eat :
 	key(e)
 take all:
 	key(e)
-drop (it | that) | ditch (it | that) | unequip (it | that) | (modification | mod) [slot] clear | mark [to] [sell] | function [group] 1:
+(drop | unequip) (it | that) | (modification | mod) [slot] clear | mark [to] sell | function [group] 1:
 	#key(r)
 	user.game_hold_key_native("r", 650000)
 disassemble [many | multiple] | sell (many | multiple) | job create | show on map | map point | function [group] 2:
 	key(g)
 # craft voice command takes care of both crafting controls: in weapon wheel and in crafting menu, so I excluded it from function group 3
-take | [skill] learn | select | equip | modify | disassemble (it | that) | buy (it | that) | sell (it | that) | quest activate | datapoint play | function [group] 3:
+skill learn | (take | disassemble | buy | sell | select | equip | modify) (it | that) | quest activate | datapoint play | function [group] 3:
 	user.game_hold_key_native("f", 650000)
-(skills | skill tree) [show]:
+skill tree [show]:
 	key(k)
 crafting [show]:
 	key(o)
-(journal | log | quests | quest) [show]:
+(journal | quest log) [show]:
 	key(j)
 map [show]:
 	key(m)
