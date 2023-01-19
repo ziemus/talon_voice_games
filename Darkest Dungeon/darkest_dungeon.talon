@@ -12,24 +12,11 @@ settings():
     
 tag(): user.game_basic_movement
 tag(): user.game_character_sheet
+tag(): user.game_mouse_enabled
 [hero] next:
     key(e)
 [hero] (prev | previous):
     key(q)
-stay:
-    user.mouse_stay_in_place(1)
-come:
-    user.mouse_stay_in_place(0)
-(scroll | page) up:
-    user.mouse_scroll_up_continuous()
-[scroll | page] down | day:
-    user.mouse_scroll_down_continuous()
-zoom in | closer | close:
-    user.mouse_scroll_up_continuous()
-zoom out | farther | far:
-    user.mouse_scroll_down_continuous()
-drag:
-	user.mouse_drag(0)
 [provision] (buy | resell | take) <digits>:
     user.mouse_stay_in_place(1)
     user.game_click(0, digits)
