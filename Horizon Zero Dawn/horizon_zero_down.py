@@ -61,10 +61,10 @@ class GameActions:
     def game_tool_use():
         actions.key("f")
 
-    def game_tool_switch_left():
+    def game_tool_switch_previous():
         actions.key("z")
 
-    def game_tool_switch_right():
+    def game_tool_switch_next():
         actions.key("x")
 
     def game_craft():
