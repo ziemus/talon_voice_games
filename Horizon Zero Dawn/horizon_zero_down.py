@@ -27,11 +27,13 @@ class GameActions:
 
     def game_before_on_pop():
         actions.user.horizon_override(False)
+        return (True, True)
 
     def game_before_on_hiss():
         actions.user.horizon_override(False)
         if is_heavy_attack_mode:
             actions.key("shift:down")
+        return (True, True)
 
     def game_after_on_hiss():
         if is_heavy_attack_mode:

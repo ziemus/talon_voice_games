@@ -81,10 +81,13 @@ class Actions:
     def game_before_on_pop():
         if is_feeding:
             actions.user.vtmb_feed(False)
+            return (False, False)  # just end feeding and skip the regular binding
+        return (True, True)  # continue
 
     def game_before_on_hiss():
         if is_block:
             actions.user.vtmb_block(False)
+        return (True, True)
 
 
 @mod.action_class

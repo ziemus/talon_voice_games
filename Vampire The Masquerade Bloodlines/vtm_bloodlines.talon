@@ -42,6 +42,10 @@ armor [clothing]:
 
 eat | feed:
     user.vtmb_feed(1)
+#it's easier to end feeding with a pop sound
+#(see game_before_on_pop() in vtm_bloodlines.py)
+#this way the player is more likely to get it on time
+#and not... overindulge
 (eat | feed) done:
     user.vtmb_feed(0)
 ^feeding state reset$:

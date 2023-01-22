@@ -48,3 +48,4 @@ class GameActions:
 
     def game_before_on_pop():
         actions.user.switch_game_movement(0)
+        return (True, True)

@@ -20,9 +20,11 @@ class Actions:
 
     def game_before_on_pop():
         actions.user.talos_cancel_test_reset()
+        return (True, True)
 
     def game_before_on_hiss():
         actions.user.talos_cancel_test_reset()
+        return (True, True)
 
 
 @talos_game_module.action_class
