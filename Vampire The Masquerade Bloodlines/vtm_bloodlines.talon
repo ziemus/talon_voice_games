@@ -69,18 +69,3 @@ dialog [history] down | day:
 
 ^hot keys show$:
     key(k)
-
-[blood] buff:
-    user.vtmb_hotkey_discipline_use("2")
-[blood] heal:
-    user.vtmb_hotkey_discipline_use("3")
-[blood] strike | try:
-    user.vtmb_hotkey_discipline_use("4")
-[blood] purge | purr:
-    user.vtmb_hotkey_discipline_use("5")
-[blood] shield | she:
-    user.vtmb_hotkey_discipline_use("6")
-command | come:
-    user.vtmb_hotkey_discipline_use("7")
-[blood] theft | thieve | steal:
-    user.vtmb_hotkey_discipline_use("8")

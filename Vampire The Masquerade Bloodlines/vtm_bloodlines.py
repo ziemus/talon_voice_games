@@ -22,7 +22,7 @@ ctx.lists["user.game_number_shortcuts"] = {
     "seven": "7",
     "eight": "8",
     "nine": "9",
-    "ten": "0",
+    "zero": "0",
     "F one": "f1",
     "F two": "f2",
     "F three": "f3",
@@ -32,6 +32,7 @@ ctx.lists["user.game_number_shortcuts"] = {
 
 is_feeding: bool = False
 is_block: bool = False
+
 
 @ctx.action_class("user")
 class Actions:
@@ -86,8 +87,15 @@ class Actions:
 
     def game_before_on_hiss():
         if is_block:
-            actions.user.vtmb_block(False)
+            actions.user.vtmb_block(False)  # let your guard down to attack
+            actions.user.vtmb_feed_state_set(
+                True)  # this will tell game_after_on_hiss to return to blocking
         return (True, True)
+
+    def game_after_on_hiss():
+        if is_block:
+            #if blocking previously, return to blocking after the attack
+            actions.user.vtmb_block(True)
 
 
 @mod.action_class
@@ -96,7 +104,8 @@ class VtmbActions:
     def vtmb_hotkey_discipline_use(hotkey_number: str):
         """"""
         actions.key(hotkey_number)
-        ctrl.mouse_click(1, hold=16000, wait=64000)
+        actions.sleep("150ms")
+        actions.user.game_skill_use()
 
     def vtmb_feed(is_start: bool):
         """"""
