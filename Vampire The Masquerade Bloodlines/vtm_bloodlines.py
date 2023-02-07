@@ -31,7 +31,6 @@ ctx.lists["user.game_number_shortcuts"] = {
 }
 
 is_feeding: bool = False
-is_block: bool = False
 
 
 @ctx.action_class("user")
@@ -85,17 +84,11 @@ class Actions:
             return (False, False)  # just end feeding and skip the regular binding
         return (True, True)  # continue
 
-    def game_before_on_hiss():
-        if is_block:
-            actions.user.vtmb_block(False)  # let your guard down to attack
-            actions.user.vtmb_feed_state_set(
-                True)  # this will tell game_after_on_hiss to return to blocking
-        return (True, True)
+    def game_weapon_block_start():
+        actions.key("tab:down")
 
-    def game_after_on_hiss():
-        if is_block:
-            #if blocking previously, return to blocking after the attack
-            actions.user.vtmb_block(True)
+    def game_weapon_block_stop():
+        actions.key("tab:up")
 
 
 @mod.action_class
@@ -116,17 +109,3 @@ class VtmbActions:
         """"""
         global is_feeding
         is_feeding = is_start
-
-    def vtmb_block(is_start: bool = None):
-        """"""
-        is_start = not is_block if is_start is None else is_start
-        if is_start:
-            actions.key("tab:down")
-        else:
-            actions.key("tab:up")
-        actions.user.vtmb_block_state_set(is_start)
-
-    def vtmb_block_state_set(is_start: bool):
-        """"""
-        global is_block
-        is_block = is_start

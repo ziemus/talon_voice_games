@@ -17,6 +17,7 @@ tag(): user.game_arrow_keys_toggle_wsad_movement
 tag(): user.first_person_game_controls
 tag(): user.game_weapons
 tag(): user.game_skills
+tag(): user.game_weapon_block
 
 noise binding exploration mode | noise explore | exploring:
 	user.game_noise_control_switch("pop","move")
@@ -27,12 +28,6 @@ noise binding fight mode | noise fight | fighting:
 
 [attack] secondary | sec:
     key(tab)
-block:
-    user.vtmb_block()
-block done:
-    user.vtmb_block(0)
-^block state reset$:
-    user.vtmb_block_state_set(0)
 
 armor [clothing]:
     key(f3)
