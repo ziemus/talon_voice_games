@@ -19,13 +19,16 @@ settings():
 tag(): user.game_arrow_keys_toggle_wsad_movement
 tag(): user.first_person_game_controls
 tag(): user.game_skills
+tag(): user.game_weapons
 tag(): user.game_weapon_block
+tag(): user.game_weapon_aim
 tag(): user.game_quick_access_menu
 tag(): user.game_lean_sideways
 
 keyhole [look] [through] | [body] (carry | drop):
-    user.game_hold_use()
-
+    user.game_long_use()
+zoom | spy | pie:
+	key(alt)
 noise binding exploration mode | noise explore | exploring:
 	user.game_noise_control_switch("pop","move")
 	user.game_noise_control_switch("hiss","jump")
