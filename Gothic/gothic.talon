@@ -26,5 +26,12 @@ climb up:
 climb stop:
     key("alt:up")
 
-arrow <user.arrow_keys>:
+go <user.arrow_keys>:
     key(arrow_keys)
+
+attack forward | war:
+    user.gothic_attack_mode_change(0)
+attack sideways | side | I'd:
+    user.gothic_attack_mode_change(1)
+attack change | chat:
+    user.gothic_attack_mode_change()

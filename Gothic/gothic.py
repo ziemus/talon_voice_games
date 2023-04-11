@@ -1,7 +1,5 @@
 from talon import Module, Context, actions, ctrl
-
-is_tool_aim: bool = False
-is_heavy_attack_mode: bool = False
+from enum import Enum
 
 mod = Module()
 mod.apps.gothic = """
@@ -28,8 +26,67 @@ ctx.lists["user.game_number_shortcuts"] = {
 }
 
 
+class GothicAttackMode(Enum):
+    FORWARD = 0
+    SIDEWAYS = 1
+
+    def get_next(self):
+        if self == GothicAttackMode.FORWARD:
+            return GothicAttackMode.SIDEWAYS
+        else:
+            return GothicAttackMode.FORWARD
+
+
+class GothicAttackDirection(Enum):
+    FORWARD = "up"
+    LEFT = "left"
+    RIGHT = "right"
+
+    def get_next(self):
+        if self == GothicAttackDirection.FORWARD:
+            return self
+        elif self == GothicAttackDirection.LEFT:
+            return GothicAttackDirection.RIGHT
+        else:
+            return GothicAttackDirection.LEFT
+
+    def __str__(self):
+        return str(self.value)
+
+
+current_attack_mode: GothicAttackMode = GothicAttackMode.FORWARD
+current_attack_direction: GothicAttackDirection = GothicAttackDirection.FORWARD
+
+
+@mod.action_class
+class GothicActions:
+
+    def gothic_attack_mode_change(mode: int = None):
+        """Change to the specified mode or from the current mode to the alternate attack mode"""
+        global current_attack_mode, current_attack_direction
+        if mode is None:
+            current_attack_mode = current_attack_mode.get_next()
+        current_attack_mode = GothicAttackMode(mode)
+        if current_attack_mode == GothicAttackMode.FORWARD:
+            current_attack_direction = GothicAttackDirection.FORWARD
+        else:
+            current_attack_direction = GothicAttackDirection.LEFT
+
 @ctx.action_class("user")
 class GameActions:
+
+    def game_before_on_hiss():
+        global current_attack_direction
+        # attack uses the same key binding as interaction, as attacking forward
+        # so there is no need to declare a different attack noise binding
+        if current_attack_mode == GothicAttackMode.FORWARD:
+            return (True, True)
+        # if the player wants to tack sideways the attack key needs to change automatically
+        # to allow the player for performing combos
+        attack_key = current_attack_direction
+        actions.key(f"ctrl-{attack_key}")
+        current_attack_direction = current_attack_direction.get_next()
+        return (False, False)
 
     def game_weapon_draw():
         actions.key("space")
@@ -54,20 +111,33 @@ class GameActions:
     def game_weapon_target_lock_stop():
         actions.key("ctrl:up")
 
+    def game_quest_log_show():
+        actions.key("l")
+
     def game_dodge():
         actions.key("down")
 
     def game_long_dodge():
         actions.user.game_dodge()
 
+    def game_loot():
+        actions.user.game_weapon_target_lock_toggle(True)
+        actions.user.game_use()
+
     def game_inventory_show():
         actions.key("tab")
 
+    def game_take_number(digits: int):
+        actions.key(f"ctrl:down right:{digits} ctrl:up")
+
+    def game_take_all():
+        actions.key("ctrl-alt-right")
+
     def game_trade_buy_item():
-        actions.key("ctrl-right")
+        actions.user.game_take_number(1)
 
     def game_trade_buy_multiple_items():
-        actions.key("ctrl-alt-right")
+        actions.user.game_take_all()
 
     def game_trade_sell_item():
         actions.key("ctrl-left")
