@@ -42,21 +42,6 @@ class GothicAttackDirection(Enum):
         return str(self.value)
 
 
-current_attack_mode: GothicAttackMode = GothicAttackMode.FORWARD
-current_attack_direction: GothicAttackDirection = GothicAttackDirection.FORWARD
-
-inventory_tabs = {
-    "weapons": 0,
-    "armor": 1,
-    "magic": 2,
-    "artifacts": 3,
-    "food": 4,
-    "potions": 5,
-    "notes": 6,
-    "miscellaneous": 7,
-}
-current_inventory_tab = inventory_tabs["weapons"]
-
 ctx.lists["user.game_inventory_tabs"] = {
     "weapon": "weapons",
     "armor": "armor",
@@ -92,6 +77,25 @@ ctx.lists["user.game_directions"] = {
     "aye": "pagedown",
 }
 
+current_attack_mode: GothicAttackMode = GothicAttackMode.SIDEWAYS
+current_attack_direction: GothicAttackDirection = GothicAttackDirection.FORWARD
+
+inventory_tabs = {
+    "weapons": 0,
+    "armor": 1,
+    "magic": 2,
+    "artifacts": 3,
+    "food": 4,
+    "potions": 5,
+    "notes": 6,
+    "miscellaneous": 7,
+}
+
+is_in_dialogue: bool = False
+is_equipped_spell: bool = False
+is_casting_spell: bool = False
+
+
 @mod.action_class
 class GothicActions:
 
@@ -105,6 +109,28 @@ class GothicActions:
             current_attack_direction = GothicAttackDirection.FORWARD
         else:
             current_attack_direction = GothicAttackDirection.LEFT
+
+    def gothic_dialogue_end():
+        """End dialog"""
+        global is_in_dialogue
+        actions.user.switch_game_movement(False)
+        actions.key("0 up enter")
+        is_in_dialogue = False
+
+    def gothic_climb_up():
+        """"""
+        actions.key("alt:down")
+        actions.user.game_hold_key_native("up", 1000000)
+        actions.key("alt:up")
+
+    def gothic_spell_cast_toggle():
+        """"""
+        global is_casting_spell
+        if is_casting_spell:
+            actions.key("up:down")
+        else:
+            actions.key("up:up")
+        is_casting_spell = not is_casting_spell
 
 
 def inventory_take_give_number(is_taking: bool, number: int):
@@ -120,12 +146,20 @@ def inventory_take_give_number(is_taking: bool, number: int):
     actions.key(f"{arrow_key}:{ones}")
     actions.key("ctrl:up")
 
+
 @ctx.action_class("user")
 class GameActions:
 
     def game_before_on_pop():
-        if actions.user.game_is_weapon_target_lock():
+        is_target = actions.user.game_is_weapon_target_lock()
+        if is_in_dialogue:
+            actions.key("escape")  # skip dialog
+            return (False, False)
+        elif is_target and not is_equipped_spell:
             actions.user.game_attack()
+            return (False, False)
+        elif is_target and is_equipped_spell:
+            actions.gothic_spell_cast_toggle()
             return (False, False)
         return (True, True)
 
@@ -139,10 +173,23 @@ class GameActions:
         actions.key("space")
 
     def game_weapon_melee_show():
-        actions.key("1")
+        actions.user.game_number_shortcut("1")
 
     def game_weapon_ranged_show():
-        actions.key("2")
+        actions.user.game_number_shortcut("2")
+
+    def game_number_shortcut(game_number_shortcuts: str):
+        global is_equipped_spell, is_casting_spell
+        if game_number_shortcuts == "1":  # meele weapon
+            actions.user.gothic_attack_mode_change(GothicAttackMode.FORWARD)
+            is_equipped_spell = False
+        elif game_number_shortcuts == "2":  # ranged weapon
+            actions.user.gothic_attack_mode_change(GothicAttackMode.FORWARD)
+            is_equipped_spell = False
+        else:  # magic
+            is_equipped_spell = True
+        is_casting_spell = False
+        actions.key(game_number_shortcuts)
 
     def game_weapon_block_start():
         actions.user.game_weapon_target_lock_toggle(True)
@@ -178,27 +225,14 @@ class GameActions:
         actions.key("tab")
 
     def game_inventory_tab_go(game_inventory_tabs: str):
-        global current_inventory_tab
         new_tab_number = inventory_tabs[game_inventory_tabs]
-        diff = new_tab_number - current_inventory_tab
-        key = "left" if diff < 0 else "right"
-        presses = abs(diff)
-        actions.key(f"{key}:{presses}")
-        current_inventory_tab = new_tab_number
+        actions.key(f"left:7 right:{new_tab_number}")
 
     def game_inventory_tab_next():
-        global current_inventory_tab
-        if current_inventory_tab == inventory_tabs["miscellaneous"]:
-            return
-        actions.key("right:1")
-        current_inventory_tab += 1
+        actions.key("right")
 
     def game_inventory_tab_previous():
-        global current_inventory_tab
-        if current_inventory_tab == inventory_tabs["weapons"]:
-            return
-        actions.key("left:1")
-        current_inventory_tab -= 1
+        actions.key("left")
 
     def game_take_all():
         # looting has a time limit so it needs to be quick
@@ -230,6 +264,12 @@ class GameActions:
 
     def game_use():
         actions.key("ctrl-up")
+
+    def game_talk():
+        global is_in_dialogue
+        actions.user.game_use()
+        actions.user.switch_game_movement(False)
+        is_in_dialogue = True
 
     def game_jump(is_hold: bool = None):
         actions.key("alt")

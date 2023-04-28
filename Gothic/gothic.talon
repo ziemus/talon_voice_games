@@ -25,23 +25,30 @@ tag(): user.game_inventory_tabs
 
 noise binding exploration mode | noise explore | exploring:
 	user.game_noise_control_switch("pop","default")
+    user.game_noise_control_switch("hiss","default")
 noise binding fight mode | noise fight | fighting:
-	user.game_noise_control_switch("pop","attack")
+	user.game_noise_control_switch("pop","default")
+    user.game_noise_control_switch("hiss","block toggle")
 
 climb up:
-    key("alt:down up")
-climb stop:
-    key("alt:up")
+    user.gothic_climb_up()
 
 dive out:
     user.game_dive_start()
     user.switch_game_movement_direction("down")
     user.switch_game_movement(1)
 
+tell <number>:
+    key("{number} enter")
+dialogue skip | kip:
+    key(escape)
+dialogue end:
+    user.gothic_dialogue_end()
+
 go <user.arrow_keys>:
     key(arrow_keys)
-go <user.arrow_key> <digits>:
-    key("{arrow_key}:{digits}")
+go <user.arrow_key> <number>:
+    key("{arrow_key}:{number}")
 
 attack forward | war:
     user.gothic_attack_mode_change(0)
