@@ -192,7 +192,6 @@ class GameActions:
         actions.key(game_number_shortcuts)
 
     def game_weapon_block_start():
-        actions.user.game_weapon_target_lock_toggle(True)
         actions.key("down:down")
 
     def game_weapon_block_stop():
@@ -218,8 +217,7 @@ class GameActions:
         actions.user.game_dodge()
 
     def game_loot():
-        actions.user.game_weapon_target_lock_toggle(True)
-        actions.user.game_use()
+        actions.user.game_long_use()
 
     def game_inventory_show():
         actions.key("tab")
@@ -265,6 +263,23 @@ class GameActions:
     def game_use():
         actions.key("ctrl-up")
 
+    def game_long_use():
+        actions.user.game_weapon_target_lock_toggle(True)
+        #the game needs to be given time for the animation of kneeling by the chest
+        actions.sleep("850ms")
+        actions.key("up")
+        actions.user.game_weapon_target_lock_toggle(False)
+
+    def game_hold_use():
+        actions.user.game_weapon_target_lock_toggle(True)
+        actions.sleep("850ms")
+        actions.user.switch_game_movement_direction("up")
+        actions.user.switch_game_movement(True)
+
+    def game_release_use():
+        actions.user.switch_game_movement(False)
+        actions.user.game_weapon_target_lock_toggle(False)
+
     def game_talk():
         global is_in_dialogue
         actions.user.game_use()
@@ -275,14 +290,15 @@ class GameActions:
         actions.key("alt")
 
     def game_crouch():
-        actions.key("x")
-        # TODO check if this needs to be pressed or just toggles
+        actions.key("a")
 
     def game_dive_start():
-        actions.user.switch_game_movement(0)
+        actions.user.switch_game_movement(False)
         actions.key("alt:down")
 
     def game_dive_stop():
+        actions.user.switch_game_movement_direction("up")
+        actions.user.switch_game_movement(False)
         actions.key("alt:up")
 
     def game_quick_load():

@@ -13,7 +13,7 @@ settings():
     user.game_noise_hiss_binding_default = "target lock toggle"
     user.game_sprint_state_default = 1
     user.game_sprint_hold_to_walk = 1
-    key_hold = 64.0
+    key_hold = 16.0
 	key_wait = 16.0
     
 tag(): user.first_person_game_controls
@@ -30,19 +30,43 @@ noise binding fight mode | noise fight | fighting:
 	user.game_noise_control_switch("pop","default")
     user.game_noise_control_switch("hiss","block toggle")
 
-climb up:
+go to bed | bedder:
+    user.game_loot()
+
+climb start | clart:
+    key(alt:down)
+climb end | clend:
+    key(alt:up)
+climb up | clap:
     user.gothic_climb_up()
 
-dive out:
+ladder up | loop:
+    user.switch_game_movement_direction("up")
+    user.game_weapon_target_lock_toggle(1)
+    user.switch_game_movement(1)
+ladder down | lawn:
+    user.switch_game_movement_direction("down")
+    user.game_weapon_target_lock_toggle(1)
+    user.switch_game_movement(1)
+ladder end | lend:
+    user.switch_game_movement(0)
+    user.game_weapon_target_lock_toggle(0)
+    user.switch_game_movement_direction("up")
+
+dive out | doubt:
     user.game_dive_start()
     user.switch_game_movement_direction("down")
     user.switch_game_movement(1)
+dart:
+    user.game_dive_start()
+dent:
+    user.game_dive_stop()
 
 tell <number>:
     key("{number} enter")
 dialogue skip | kip:
     key(escape)
-dialogue end:
+dialogue end | gent:
     user.gothic_dialogue_end()
 
 go <user.arrow_keys>:
