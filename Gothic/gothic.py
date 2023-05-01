@@ -189,6 +189,13 @@ class GameActions:
         else:  # magic
             is_equipped_spell = True
         is_casting_spell = False
+
+        #if bow's equipped, target needs to be unlocked first
+        # and then the animation of releasing the bow string needs to finish
+        # otherwise weapons won't change
+        actions.user.game_weapon_target_lock_toggle(False)
+        actions.sleep("500ms")
+
         actions.key(game_number_shortcuts)
 
     def game_weapon_block_start():
