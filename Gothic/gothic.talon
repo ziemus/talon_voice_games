@@ -1,6 +1,9 @@
-mode: user.game
+app: gothic
+and mode: user.game
 and not mode: sleep
-and app: gothic
+app: gothic2
+and mode: user.game
+and not mode: sleep
 -
 settings():
     user.game_turn_around_mouse_delta = 1800000
@@ -22,6 +25,7 @@ tag(): user.game_weapon_block
 tag(): user.game_weapon_target_lock
 tag(): user.game_trade
 tag(): user.game_inventory_tabs
+tag(): user.game_quick_access_menu
 
 noise binding exploration mode | noise explore | exploring:
 	user.game_noise_control_switch("pop","default")
@@ -29,9 +33,6 @@ noise binding exploration mode | noise explore | exploring:
 noise binding fight mode | noise fight | fighting:
 	user.game_noise_control_switch("pop","default")
     user.game_noise_control_switch("hiss","block toggle")
-
-go to bed | bedder:
-    user.game_loot()
 
 climb start | clart:
     key(alt:down)
@@ -74,6 +75,10 @@ go <user.arrow_keys>:
 go <user.arrow_key> <number>:
     key("{arrow_key}:{number}")
 
+battle stance | dance:
+    user.game_weapon_show()
+    user.game_weapon_target_lock_toggle(1)
+    user.game_weapon_block_toggle(1)
 attack forward | war:
     user.gothic_attack_mode_change(0)
 attack sideways | side | I'd:
