@@ -3,7 +3,7 @@ and mode: user.game
 and not mode: sleep
 -
 tag(): user.game_genre_crpg
-tag(): user.game_weapons
+tag(): user.game_weapon_switch
 
 [weapon] reload | red:
     key(r)

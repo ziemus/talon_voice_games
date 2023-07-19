@@ -20,7 +20,7 @@ settings():
 	key_wait = 16.0
     
 tag(): user.first_person_game_controls
-tag(): user.game_weapons
+tag(): user.game_weapon_switch
 tag(): user.game_weapon_block
 tag(): user.game_weapon_target_lock
 tag(): user.game_trade
