@@ -22,9 +22,9 @@ tic | click:
 run [hold]:
     user.release_game_key('shift')
 walk [hold]:
-    user.hold_game_key('shift')
+    user.game_hold_key_native('shift')
 
 ^Antichamber return$:
     user.press_game_key('escape')
 ^Antichamber quit$:
-	user.hold_game_key('escape', '2s')
+	user.game_hold_key_native('escape', 2000000)

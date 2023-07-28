@@ -47,7 +47,7 @@ exit test:
 # this is not a default binding that you need to change in-game
 # for the voice command to work
 zoom in | close:
-	user.hold_game_key('pageup')
+	user.game_hold_key_native('pageup')
 zoom out | far:
 	user.release_game_key('pageup')
 (scroll | page) up:

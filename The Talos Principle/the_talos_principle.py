@@ -33,7 +33,7 @@ class TalosActions:
     def talos_reset_test():
         """"""
         actions.user.game_switch_sprint(False)
-        actions.user.hold_game_key("x", "3s")
+        actions.user.game_hold_key_native("x", 3000000)
 
     def talos_cancel_test_reset():
         """"""
