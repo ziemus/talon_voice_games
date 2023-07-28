@@ -2,13 +2,6 @@ mode: user.game
 and not mode: sleep
 and app: horizon_zero_dawn
 -
-settings():
-	user.mouse_continuous_scroll_amount = 250
-	user.mouse_wheel_down_amount = 250
-	user.game_turn_around_mouse_delta = 500
-	user.game_turn_horizontally_mouse_delta = 300
-	user.game_turn_vertically_mouse_delta = 100
-
 tag(): user.game_action_rpg
 
 # GAME CONTROLS
@@ -21,7 +14,7 @@ climb down:
 examine | play (it | that):
 	user.game_use()
 # FOCUS MODE SECTION
-focus [mode] [toggle | switch] | scan:
+focus [mode] [toggle | switch] | scan | cuss:
 	key(v)
 [target] tag:
 	user.game_click(0)
@@ -42,10 +35,10 @@ rock [aim]:
 	key(enter)
 	user.mouse_stay_in_place(0)
 override:
-	user.horizon_override(1)
+	user.game_hold_use()
 #you can also end override with both hiss and pop or even use/talk to/trade with...
 override done:
-	user.horizon_override(0)
+	user.game_release_use()
 # COMBAT CONTROLS
 oof | oops | retreat:
 	user.horizon_retreat()

@@ -26,11 +26,11 @@ ctx.lists["user.game_number_shortcuts"] = {
 class GameActions:
 
     def game_before_on_pop():
-        actions.user.horizon_override(False)
+        actions.user.game_release_use()
         return (True, True)
 
     def game_before_on_hiss():
-        actions.user.horizon_override(False)
+        actions.user.game_release_use()
         if is_heavy_attack_mode:
             actions.key("shift:down")
         return (True, True)
@@ -39,67 +39,10 @@ class GameActions:
         if is_heavy_attack_mode:
             actions.key("shift:up")
 
-    def game_switch_sprint(do_turn_on: bool = None):
-        actions.key("shift")  # there is no point in tracking sprint state in this game
-
-    def game_start_running():
-        actions.key("capslock")
-
-    def game_start_walking():
-        actions.user.game_start_running()
-
-    def game_heal():
-        actions.key("q")
-
-    def game_quick_save():
-        actions.key("e")
-
-    def game_manual_save():
-        actions.key("g")
-
-    def game_loot():
-        actions.user.game_hold_key_native("e", 650000)
-
-    def game_tool_use():
-        actions.key("f")
-
-    def game_tool_switch_previous():
-        actions.key("z")
-
-    def game_tool_switch_next():
-        actions.key("x")
-
-    def game_craft():
-        actions.user.game_click(0, 1, 650000)
-
-    def game_mount_ride_slower():
-        actions.user.game_crouch()
-
     def game_mount_stop():
         for i in range(4):
             actions.user.game_mount_ride_slower()
         actions.user.switch_game_movement(False)
-
-    def game_map_filter_toggle():
-        actions.key("f")
-
-    def game_map_filters_toggle_all():
-        actions.key("g")
-
-    def game_skill_learn():
-        HorizonZeroDawnActions.horizon_function_group_3()
-
-    def game_trade_buy_item():
-        HorizonZeroDawnActions.horizon_function_group_3()
-
-    def game_trade_buy_multiple_items():
-        actions.key("f")
-
-    def game_trade_sell_multiple_items():
-        actions.key("g")
-
-    def game_trade_mark_to_sell():
-        HorizonZeroDawnActions.horizon_function_group_1()
 
 
 @mod.action_class
@@ -108,13 +51,6 @@ class HorizonZeroDawnActions:
     def horizon_tool_aim_toggle():
         """"""
         actions.user.horizon_tool_aim(not is_tool_aim)
-
-    def horizon_override(is_override: bool):
-        """"""
-        if is_override:
-            actions.key("e:down")
-        else:
-            actions.key("e:up")
 
     def horizon_retreat():
         """fast retreat action to compensate for voice command execution time

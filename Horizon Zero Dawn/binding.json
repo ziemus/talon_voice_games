@@ -1,0 +1,36 @@
+{
+    "heal" : "q",
+    "quick_save": "e",
+    "manual_safe": "g",
+    "sprint_toggle": "shift",
+    "run": "capslock",
+    "walk": "capslock",
+    "mount_ride_slower": "c",
+    "loot": {
+        "key": "e",
+        "duration": 650000
+    },
+    "tool_use": "f",
+    "craft": {
+        "mouse": 0,
+        "duration": 650000
+    },
+    "map_filter_toggle": "f",
+    "map_filters_toggle_all": "g",
+    "sell_multiple_items": "g",
+    "buy_multiple_items": "f",
+    "tool_switch_previous": "z",
+    "tool_switch_next": "x",
+    "skill_learn": {
+        "key": "f",
+        "duration": 650000
+    },
+    "buy_item": {
+        "key": "f",
+        "duration": 650000
+    },
+    "mark_to_sell": {
+        "key": "r",
+        "duration": 650000
+    }
+}
