@@ -1,0 +1,15 @@
+{
+    "use": "f",
+    "long_use": {
+        "key":"f",
+        "duration": 650000
+    },
+    "hold_use": "f:down",
+    "release_use": "f:up",
+    "dodge": "space",
+    "long_dodge": "space",
+    "target_lock_previous": "z",
+    "target_lock_next": "c",
+    "block_start": "ctrl:down",
+    "block_stop": "ctrl:up"
+}
