@@ -29,11 +29,11 @@ rock [aim]:
 (hud | objectives) show:
 	key(h)
 (datapoint | note) (view | read):
-	user.mouse_stay_in_place(1)
+	user.mouse_stay_in_place(true)
 	key(enter)
 	sleep(1s)
 	key(enter)
-	user.mouse_stay_in_place(0)
+	user.mouse_stay_in_place(false)
 override:
 	user.game_hold_use()
 #you can also end override with both hiss and pop or even use/talk to/trade with...
@@ -45,9 +45,9 @@ oof | oops | retreat:
 # ATTACK MODE SECTION
 #it is probably easier to just use a foot pedal than light attack and heavy attack though
 light [attack] [mode] [switch | toggle]:
-	user.horizon_heavy_attack_mode_toggle(0)
+	user.horizon_heavy_attack_mode_toggle(false)
 heavy [attack] [mode] [switch | toggle]:
-	user.horizon_heavy_attack_mode_toggle(1)
+	user.horizon_heavy_attack_mode_toggle(true)
 # BOW SECTION
 [bow] get | draw concentrate:
 	user.horizon_bow_draw()
@@ -63,7 +63,7 @@ fire:
 reload | red | ret:
 	key(r)
 concentrate | con | come:
-	user.game_weapon_aim_toggle(1)
+	user.game_weapon_aim_toggle(true)
 	key(shift)
 
 # MENU CONTROLS

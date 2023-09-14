@@ -29,14 +29,14 @@ class GameActions:
         actions.user.game_release_use()
         return (True, True)
 
-    def game_before_on_hiss():
+    def game_before_on_hiss(is_start: bool):
         actions.user.game_release_use()
-        if is_heavy_attack_mode:
+        if is_start and is_heavy_attack_mode:
             actions.key("shift:down")
         return (True, True)
 
-    def game_after_on_hiss():
-        if is_heavy_attack_mode:
+    def game_after_on_hiss(is_start: bool):
+        if not is_start and is_heavy_attack_mode:
             actions.key("shift:up")
 
     def game_mount_stop():

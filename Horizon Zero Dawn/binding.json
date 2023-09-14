@@ -1,7 +1,7 @@
 {
     "heal" : "q",
     "quick_save": "e",
-    "manual_safe": "g",
+    "manual_save": "g",
     "sprint_toggle": "shift",
     "run": "capslock",
     "walk": "capslock",
