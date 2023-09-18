@@ -1,0 +1,6 @@
+{
+    "move_forward": "up",
+    "move_backward": "down",
+    "strife_left": "delete",
+    "strife_right": "pagedown"
+}

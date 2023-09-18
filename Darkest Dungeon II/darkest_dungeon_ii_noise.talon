@@ -10,4 +10,3 @@ settings():
     key_hold = 32.0
     user.mouse_wait = 16000
     user.mouse_hold = 16000
-    user.game_default_movement_key = "w"

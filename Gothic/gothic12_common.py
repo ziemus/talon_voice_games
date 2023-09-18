@@ -21,19 +21,6 @@ app: gothic2
 and mode: user.game
 """
 
-common_context.lists["user.game_directions"] = {
-    "north": "up",
-    "nor": "up",
-    "no": "up",
-    "south": "down",
-    "so": "down",
-    "west": "delete",
-    "wet": "delete",
-    "we": "delete",
-    "east": "pagedown",
-    "ease": "pagedown",
-    "aye": "pagedown",
-}
 
 class GothicAttackMode(Enum):
     FORWARD = 0
@@ -240,9 +227,6 @@ class GameActions:
     def game_turn_camera_around():
         duration = settings.get("user.game_turn_around_mouse_delta")
         actions.user.game_hold_key_native("left", duration)
-
-    def get_game_movement_keys():
-        return ["up", "down", "right", "left", "delete", "pagedown"]
 
     def get_held_game_keys():
         return [

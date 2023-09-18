@@ -24,17 +24,6 @@ and not mode: sleep
 and mode: user.game
 """
 
-ctx.lists["user.game_directions"] = {
-    "backward": "a",
-    "back": "a",
-    "west": "a",
-    "left": "a",
-    "forward": "d",
-    "east": "d",
-    "right": "d",
-}
-
-
 @ctx.action_class("user")
 class GameActions:
 
@@ -42,9 +31,6 @@ class GameActions:
         """Show character card in character roaster.
         This game responds to mouse button down events only after they're pressed for some time"""
         ctrl.mouse_click(button=1, hold=16000)
-
-    def get_game_movement_keys():
-        return ["a", "d"]
 
     def game_before_on_pop():
         actions.user.switch_game_movement(0)

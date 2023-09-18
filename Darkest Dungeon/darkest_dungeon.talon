@@ -8,11 +8,11 @@ settings():
     user.mouse_wait = 50000
     user.mouse_hold = 50000
     user.mouse_continuous_scroll_amount = 500
-    user.game_default_movement_key = "d"
     
 tag(): user.game_basic_movement
 tag(): user.game_character_sheet
 tag(): user.game_mouse_enabled
+
 [hero] next:
     key(e)
 [hero] (prev | previous):
