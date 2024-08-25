@@ -11,7 +11,6 @@ settings():
     user.game_noise_pop_binding_default = "move"
     user.game_noise_hiss_binding_default = "jump"
 
-tag(): user.wsad_game_controls
 tag(): user.first_person_game_controls
 
 tic | click:

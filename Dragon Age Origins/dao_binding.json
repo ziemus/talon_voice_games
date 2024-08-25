@@ -1,0 +1,41 @@
+{
+    "strife_left": "q",
+    "strife_right": "e",
+    "sprint_toggle": "keypad_divide",
+    "run": "keypad_divide",
+    "walk": "keypad_divide",
+
+    "interactable_objects_highlight_start": "tab:down",
+    "interactable_objects_highlight_stop": "tab:up",
+
+    "quick_load": "f9",
+
+    "camera_left": {
+        "key": "a",
+        "hold": 600000
+    },
+    "camera_right": {
+        "key": "d",
+        "hold": 600000
+    },
+    "camera_up": {
+        "key": "home",
+        "hold": 600000
+    },
+    "camera_down": {
+        "key": "end",
+        "hold": 600000
+    },
+    "camera_turn_around": {
+        "key": "d",
+        "hold": 1200000
+    },
+
+    "camera_zoom_in": "pagedown",
+    "camera_zoom_out": "pageup",
+    "camera_center": {
+        "mouse_button": 2
+    },
+    "camera_first_person": "pagedown:9",
+    "camera_third_person": "pageup:9"
+}

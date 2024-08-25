@@ -1,0 +1,24 @@
+{
+    "quick_load": "f8",
+    "camera_left": {
+        "key": "e",
+        "hold": 850000
+    },
+    "camera_right": {
+        "key": "q",
+        "hold": 850000
+    },
+    "camera_up": {
+        "key": "w",
+        "hold": 850000
+    },
+    "camera_down": {
+        "key": "s",
+        "hold": 850000
+    },
+    "camera_turn_around": {
+        "key": "q",
+        "hold": 2000000
+    },
+    "camera_center": "home"
+}
