@@ -16,7 +16,4 @@ settings():
 	user.game_noise_pop_binding_default = "aim toggle"
 	user.game_noise_hiss_binding_default = "long click"
 
-key(left):
-	user.game_turn_camera("left")
-key(right):
-	user.game_turn_camera("right")
+tag(): user.game_foot_switch_first_person

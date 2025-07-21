@@ -1,26 +1,25 @@
 {
     "quick_load": "f8",
     "camera_left": {
-        "key": "q",
+        "key": "e",
         "hold": 350000
     },
     "camera_right": {
-        "key": "e",
+        "key": "q",
         "hold": 350000
     },
     "camera_up": {
         "key": "w",
-        "hold": 400000
+        "hold": 1200000
     },
     "camera_down": {
         "key": "s",
-        "hold": 400000
+        "hold": 1200000
     },
     "camera_turn_around": {
         "key": "q",
         "hold": 700000
     },
     "camera_center": "ctrl-x",
-    "interactable_objects_highlight_start": "tab:down",
-    "interactable_objects_highlight_stop": "tab:up"
+    "interactable_objects_highlight_start": "tab"
 }

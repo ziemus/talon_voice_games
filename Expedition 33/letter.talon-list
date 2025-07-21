@@ -1,0 +1,16 @@
+list: user.letter
+app: expedition33
+mode: all
+-
+walk: w
+seed: s
+am: a
+drum: d
+quick: q
+ease: e
+fine: f
+red: r
+grow: g
+trap: t
+cap: c
+zip: z

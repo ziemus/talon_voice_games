@@ -10,7 +10,6 @@ and app.exe: Talos.exe
 talos_game_context = Context()
 talos_game_context.matches = """
 mode: user.game
-and not mode: sleep
 and app: TheTalosPrinciple
 """
 
@@ -22,7 +21,7 @@ class Actions:
         actions.user.talos_cancel_test_reset()
         return (True, True)
 
-    def game_before_on_hiss():
+    def game_before_on_hiss(is_start: bool):
         actions.user.talos_cancel_test_reset()
         return (True, True)
 

@@ -4,9 +4,11 @@ and app: TheTalosPrinciple
 -
 settings():
 	user.mouse_enable_pop_click = 0
+	user.game_turn_horizontally_mouse_delta = 400
 	user.game_turn_around_mouse_delta = 787
-    user.game_noise_pop_binding_default = "move"
-    user.game_noise_hiss_binding_default = "click"
+	user.game_minimum_hiss_duration = "200ms"
+    user.game_noise_pop_binding_default = "click"
+    user.game_noise_hiss_binding_default = "right click"
 
 tag(): user.first_person_game_controls
 
@@ -53,10 +55,3 @@ zoom out | far:
 	user.press_game_key('pageup')
 (scroll | page) down:
 	user.press_game_key('pagedown')
-
-key(3):
-    user.game_jump()
-key(2):
-	user.switch_game_movement()
-key(1):
-    user.game_turn_camera_around()

@@ -4,9 +4,8 @@ is_heavy_attack_mode: bool = False
 
 mod = Module()
 mod.apps.cyberpunk2077 = """
-title: Cyberpunk 2077 (C) 2020 by CD Projekt RED
-and app.name: Cyberpunk 2077
-and app.exe: Cyberpunk2077.exe
+app.name: Cyberpunk 2077
+and app.exe: /^cyberpunk2077\\.exe$/i
 """
 
 ctx = Context()

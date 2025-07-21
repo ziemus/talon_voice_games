@@ -1,4 +1,4 @@
-from talon import Module, Context
+from talon import Module, Context, actions, cron
 
 mod = Module()
 mod.apps.wh40k_rogue_trader = r"""
@@ -16,6 +16,18 @@ ctx.matches = """
 mode: user.game
 and app: wh40k_rogue_trader
 """
+
+
+@ctx.action_class("user")
+class Actions:
+    def on_pop_start():
+        actions.user.switch_game_movement(False)
+        actions.next()
+
+    # def game_jump(is_hold: bool = None):
+    #     actions.key("space")
+    #     cron.after("1s", actions.user.game_interactable_objects_highlight_start)
+
 
 ctx.lists["user.wh40k_rogue_trader_character_shortcuts"] = {
     "one": "1",
